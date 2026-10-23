@@ -2,10 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\PelangganController;
+
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('home');});
 
 Route::post('/question/store', [QuestionController::class, 'store'])
     ->name('question.store');
+
+Route::get('dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
+
+Route::resource('pelanggan', PelangganController::class);

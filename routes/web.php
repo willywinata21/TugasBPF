@@ -1,21 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('welcome');
+});
 
-Route::post('/question/store', [QuestionController::class, 'store'])
-    ->name('question.store');
+Route::get('/home', [HomeController::class, 'index']);
 
-    Route::get('/question/response', function () {
-    return view('home-question-respon', [
-        'data' => session('data')
-    ]);
-})->name('question.response');
+Route::post('question/store', [QuestionController::class, 'store'])
+		->name('question.store');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard.index');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::resource('pelanggan', PelangganController::class);
+
+Route::resource('user', UserController::class);
